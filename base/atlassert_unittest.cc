@@ -22,7 +22,7 @@ namespace omaha {
 // The CComPtr expects the parameter to be 0.
 TEST(AtlAssertTest, AtlAssert) {
   ExpectAsserts expect_asserts;
-  CComPtr<IUnknown> p(1);
+  CComPtr<IUnknown> p((IUnknown*)1);
 }
 
 }  // namespace omaha

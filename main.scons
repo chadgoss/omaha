@@ -346,7 +346,10 @@ win_env.Append(
         '/D_CRT_SECURE_CPP_OVERLOAD_SECURE_NAMES=1',
         '/D_CRT_SECURE_CPP_OVERLOAD_STANDARD_NAMES=1',
         '/D_CRT_SECURE_CPP_OVERLOAD_STANDARD_NAMES_COUNT=1',
-        '/WX',      # warnings as errors
+        '/DGTEST_USE_OWN_TR1_TUPLE=0',
+
+        # Do not treat warnings as errors for now
+        # '/WX',      # warnings as errors
 
         #
         # Disable the following level 4 warnings below.
@@ -376,6 +379,8 @@ win_env.Append(
         '/wd4711',  # function 'function' selected for inline expansion
         '/wd4738',  # storing 32-bit float result in memory...
         '/wd4820',  # bytes padding added after construct 'member_name'
+        '/wd4986',  # Exception specification does not match previous declaration.
+        '/wd4987',  # Nonstandard extension used: 'throw (...)'
         ],
 
     # Where to look for include files.
