@@ -529,10 +529,6 @@ CString FormatResourceMessage(uint32 resource_id, ...);
 // integer depending on whether it matches the HRESULT failure format.
 CString FormatErrorCode(DWORD error_code);
 
-// Converts the unicode string into a utf8 encoded, urlencoded string.
-// The resulting ascii string is returned in a wide CString.
-HRESULT WideStringToUtf8UrlEncodedString(const CString& str, CString* out);
-
 // Converts a string that is in the utf8 representation and is urlencoded
 // into a unicode string.
 HRESULT Utf8UrlEncodedStringToWideString(const CString& str, CString* out);

@@ -133,11 +133,9 @@ void TimeTToFileTime(const time_t& time, FILETIME* file_time);
 //                                                 ;  M:-12; N:+1; Y:+12
 //                 / ( ("+" / "-") 4DIGIT )        ; Local differential
 //                                                 ;  hours+min. (HHMM)
-// return local time if ret_local_time == true,
-// return time is GMT / UTC time otherwise
+// return time is GMT / UTC time
 bool RFC822DateToSystemTime(const TCHAR* str_RFC822_date,
-                            SYSTEMTIME* psys_time,
-                            bool ret_local_time);
+                            SYSTEMTIME* psys_time);
 
 // TODO(omaha): overlap in functionality with FileTimeToTime64. Consider
 // removing this one.

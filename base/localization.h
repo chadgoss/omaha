@@ -32,39 +32,6 @@ void SetLcidOverride(const LCID & lcid_new);
 
 
 //
-// Date-time Functions
-//
-
-// Show the time in the specified locale's default format.
-// If you want to use the user's default format, use LOCALE_USER_DEFAULT
-// for the locale [eg - "5:15:34 pm" is the US default]
-CString ShowDateForLocale(const time64 & t, const LCID & lcid);
-
-// Show the time in the specified format for the specified locale.
-// If you want to use the user's default format, use LOCALE_USER_DEFAULT
-// for the locale [eg - "5:15:34 pm" is the US default]
-CString ShowFormattedDateForLocale(const time64 & t, const LCID & lcid,
-                                   const TCHAR * format);
-
-
-// Show the time in the specified locale's default format.
-// If you want to use the user's default format, use LOCALE_USER_DEFAULT
-// for the locale [eg - "5:15:34 pm" is the US default]
-CString ShowTimeForLocale(const time64 & t, const LCID & lcid);
-
-// Show the time in the specified format for the specified locale.
-// If you want to use the user's default format, use LOCALE_USER_DEFAULT
-// for the locale [eg - "5:15:34 pm" is the US default]
-CString ShowFormattedTimeForLocale(const time64 & t, const LCID & lcid,
-                                   const TCHAR * format);
-
-// Show the long date and time [ie - Tuesday, March 20, 2004 5:15pm]
-CString ShowDateTimeForLocale(const time64 & t, const LCID & lcid);
-
-// Get the long data and time in a (US English) format for logging
-CString ShowDateTimeForLogging(const time64 & t);
-
-//
 // Number Functions
 //
 

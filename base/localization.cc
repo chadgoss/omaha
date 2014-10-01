@@ -50,69 +50,6 @@ LCID GetLiveLcid() {
   return GetUserDefaultLCID();
 }
 
-
-CString ShowDateInternal(const time64 & t, const LCID & lcid,
-                         // Either type needs to be 0 or format needs to be
-                         // NULL; both cannot be set simultaneously:
-                         const DWORD type, const TCHAR * format ) {
-  SYSTEMTIME time = Time64ToLocalTime(t);
-  TCHAR buf[kDateLengthMax] = {_T('\0')};
-  int num = ::GetDateFormat(lcid, type, &time, format, buf, kDateLengthMax);
-  ASSERT(num > 0, (_T("[localization::ShowDateInternal] - GetDateFormat ")
-                   _T("failed")));
-
-  return CString(buf);
-}
-
-CString ShowDateForLocale(const time64 & t, const LCID & lcid) {
-  return ShowDateInternal(t, lcid, DATE_SHORTDATE, NULL);
-}
-
-CString ShowFormattedDateForLocale(const time64 & t, const LCID & lcid,
-                                   const TCHAR * format) {
-  return ShowDateInternal(t, lcid, 0, format);
-}
-
-
-CString ShowTimeInternal(const time64 & t, const LCID & lcid,
-                         // Either type needs to be 0 or format needs to be
-                         // NULL; both cannot be set simultaneously:
-                         const DWORD type, const TCHAR * format) {
-  ASSERT(IsValidTime(t), (_T("[localization::ShowTimeInternal - Invalid ")
-                          _T("time %llu"), t));
-
-  SYSTEMTIME time = Time64ToLocalTime(t);
-  TCHAR buf[kDateLengthMax] = {_T('\0')};
-  int num = ::GetTimeFormat(lcid, type, &time, format, buf, kDateLengthMax);
-  ASSERT(num > 0, (_T("[localization::ShowTimeInternal - GetTimeFormat ")
-                   _T("failed")));
-
-  return CString(buf);
-}
-
-CString ShowTimeForLocale(const time64 & t, const LCID & lcid) {
-  return ShowTimeInternal(t, lcid, TIME_NOSECONDS, NULL);
-}
-
-CString ShowFormattedTimeForLocale(const time64 & t, const LCID & lcid,
-                                   const TCHAR * format) {
-  return ShowTimeInternal(t, lcid, 0, format);
-}
-
-// Show the long date and time [ie - Tuesday, March 20, 2004 5:15pm]
-CString ShowDateTimeForLocale(const time64 & t, const LCID & lcid) {
-  return ShowDateForLocale(t, lcid) + _T(" ") + ShowTimeForLocale(t, lcid);
-}
-
-// Get the long data and time in a (US English) format for logging
-CString ShowDateTimeForLogging(const time64 & t) {
-  if (t == 0) {
-     return CString();
-  }
-  const LCID lcid = MAKELANGID(LANG_ENGLISH, SUBLANG_ENGLISH_US);
-  return ShowDateTimeForLocale(t, lcid);
-}
-
 // Convert a number in string format to formatted string
 static CString Show(const CString & in, const int decimal_places) {
   NUMBERFMT nf = {0};

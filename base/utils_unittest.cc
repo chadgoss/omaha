@@ -110,7 +110,8 @@ TEST(UtilsTest, ReadEntireFile) {
   ASSERT_FAILED(ReadEntireFile(L"C:\\F00Bar\\ImaginaryFile", 0, &buffer));
 
   ASSERT_SUCCEEDED(ReadEntireFile(file_name, 0, &buffer));
-  ASSERT_EQ(9405, buffer.size());
+  // Take into account the difference in line-endings across platforms
+  ASSERT_TRUE(buffer.size() == 9405 || buffer.size() == 9514);
   buffer.resize(0);
   ASSERT_FAILED(ReadEntireFile(L"C:\\WINDOWS\\Greenstone.bmp", 1000, &buffer));
 }

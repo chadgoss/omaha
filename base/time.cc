@@ -365,8 +365,7 @@ void TimeTToFileTime(const time_t& time, FILETIME* file_time) {
 // return local time if ret_local_time == true,
 // return time is GMT / UTC time otherwise
 bool RFC822DateToSystemTime(const TCHAR* str_RFC822_date,
-                            SYSTEMTIME* psys_time,
-                            bool ret_local_time) {
+                            SYSTEMTIME* psys_time) {
   ASSERT(str_RFC822_date != NULL, (L""));
   ASSERT(psys_time != NULL, (L""));
 
@@ -483,22 +482,7 @@ bool RFC822DateToSystemTime(const TCHAR* str_RFC822_date,
   time_64 = time_64 - (bias*kMinsTo100ns);
 
   *psys_time = Time64ToSystemTime(time_64);
-
-  if (ret_local_time) {
-    TIME_ZONE_INFORMATION local_time_zone_info;
-    SYSTEMTIME universal_time = *psys_time;
-
-    if (GetTimeZoneInformation(&local_time_zone_info) == TIME_ZONE_ID_INVALID) {
-      return false;
-    }
-    if (!SystemTimeToTzSpecificLocalTime(&local_time_zone_info,
-                                    &universal_time,
-                                    psys_time)) {
-      return false;
-    }
-  }
   return true;
 }
 
 }  // namespace omaha
-

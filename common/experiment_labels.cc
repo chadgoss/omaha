@@ -235,7 +235,7 @@ bool ExperimentLabels::SplitCombinedLabel(const CString& combined, CString* key,
     return false;
   }
   SYSTEMTIME system_time = {};
-  if (!RFC822DateToSystemTime(expiration_string, &system_time, false)) {
+  if (!RFC822DateToSystemTime(expiration_string, &system_time)) {
     return false;
   }
   *expiration = SystemTimeToTime64(&system_time);

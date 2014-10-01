@@ -3320,34 +3320,6 @@ CString FormatErrorCode(DWORD error_code) {
   return error_code_string;
 }
 
-HRESULT WideStringToUtf8UrlEncodedString(const CString& str, CString* out) {
-  ASSERT1(out);
-
-  out->Empty();
-  if (str.IsEmpty()) {
-    return S_OK;
-  }
-
-  // Utf8 encode the Utf16 string first. Next urlencode it.
-  CStringA utf8str = WideToUtf8(str);
-  ASSERT1(!utf8str.IsEmpty());
-  DWORD buf_len = INTERNET_MAX_URL_LENGTH;
-  CStringA escaped_utf8_name;
-  HRESULT hr = ::UrlEscapeA(utf8str,
-                            CStrBufA(escaped_utf8_name, buf_len),
-                            &buf_len,
-                            0);
-  ASSERT1(buf_len <= INTERNET_MAX_URL_LENGTH);
-  ASSERT1(escaped_utf8_name.GetLength() == static_cast<int>(buf_len));
-  if (FAILED(hr)) {
-    UTIL_LOG(LE, (_T("[UrlEscapeA failed][0x%08x]"), hr));
-    return hr;
-  }
-
-  *out = CString(escaped_utf8_name);
-  return S_OK;
-}
-
 HRESULT Utf8UrlEncodedStringToWideString(const CString& str, CString* out) {
   ASSERT1(out);
 
