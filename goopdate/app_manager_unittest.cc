@@ -75,7 +75,7 @@ const TCHAR* const kGuid1ClientStateKeyPathMachine =
     _T("\\") PRODUCT_NAME _T("\\ClientState\\")
     _T("{21CD0965-0B0E-47cf-B421-2D191C16C0E2}");
 
-const TCHAR* const kDefaultAppName = SHORT_COMPANY_NAME _T(" Application");
+const TCHAR* const kDefaultAppName = _T("Google Application");
 
 const uint32 kInitialInstallTimeDiff = static_cast<uint32>(-1 * kSecondsPerDay);
 
