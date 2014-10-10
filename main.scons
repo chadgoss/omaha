@@ -654,6 +654,7 @@ windows_optimized_env = win_env.Clone(
 # Use common optimized settings.
 windows_optimized_env.Tool('target_optimized')
 
+windows_optimized_env.FilterOut(LINKFLAGS=['/PDBPATH:none'])
 windows_optimized_env.Append(
     CCFLAGS = [
         '/O1',        # Optimize for small size.
@@ -670,10 +671,10 @@ windows_optimized_env.Append(
         '/LTCG',      # Set LTCG for creation of .lib files too.
         ],
     LINKFLAGS = [
+        '/PDBALTPATH:%_PDB%',
         '/incremental:no',
         '/opt:ref',
         '/opt:icf=32',
-        '/opt:nowin98',
         '/LTCG',      # Link-time code generation goes with cl flag '/GL'
         ],
 )
