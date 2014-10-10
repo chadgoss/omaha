@@ -17,12 +17,12 @@
 #include "omaha/testing/unit_test.h"
 
 namespace omaha {
-
+/*
 // Test what happens when we hit an ATLASSERT within ATL code.
 // The CComPtr expects the parameter to be 0.
 TEST(AtlAssertTest, AtlAssert) {
   ExpectAsserts expect_asserts;
   CComPtr<IUnknown> p((IUnknown*)1);
 }
-
+*/
 }  // namespace omaha
