@@ -123,8 +123,7 @@ TEST(TimeTest, TimeToStringTest) {
 TEST(TimeTest, RFC822TimeParsing) {
   SYSTEMTIME time = {0};
   ASSERT_TRUE(RFC822DateToSystemTime(_T("Mon, 16 May 2005 15:44:18 -0700"),
-                                     &time,
-                                     false));
+                                     &time));
   ASSERT_EQ(time.wYear , 2005);
   ASSERT_EQ(time.wMonth , 5);
   ASSERT_EQ(time.wDay , 16);
@@ -132,33 +131,12 @@ TEST(TimeTest, RFC822TimeParsing) {
   ASSERT_EQ(time.wMinute , 44);
   ASSERT_EQ(time.wSecond , 18);
 
-  ASSERT_TRUE(RFC822DateToSystemTime(_T("Mon, 16 May 2005 15:44:18 -0700"),
-                                     &time,
-                                     true));
-  ASSERT_EQ(time.wYear , 2005);
-  ASSERT_EQ(time.wMonth , 5);
-  ASSERT_EQ(time.wDay , 16);
-  ASSERT_TRUE(time.wHour == 15 || time.wHour == 14);  // daylight saving time
-  ASSERT_EQ(time.wMinute , 44);
-  ASSERT_EQ(time.wSecond , 18);
-
   ASSERT_TRUE(RFC822DateToSystemTime(_T("Tue, 17 May 2005 02:56:18 +0400"),
-                                     &time,
-                                     false));
+                                     &time));
   ASSERT_EQ(time.wYear , 2005);
   ASSERT_EQ(time.wMonth , 5);
   ASSERT_EQ(time.wDay , 16);
   ASSERT_EQ(time.wHour , 22);
-  ASSERT_EQ(time.wMinute , 56);
-  ASSERT_EQ(time.wSecond , 18);
-
-  ASSERT_TRUE(RFC822DateToSystemTime(_T("Tue, 17 May 2005 02:56:18 +0400"),
-                                     &time,
-                                     true));
-  ASSERT_EQ(time.wYear , 2005);
-  ASSERT_EQ(time.wMonth , 5);
-  ASSERT_EQ(time.wDay , 16);
-  ASSERT_TRUE(time.wHour == 15 || time.wHour == 14);  // daylight saving time
   ASSERT_EQ(time.wMinute , 56);
   ASSERT_EQ(time.wSecond , 18);
 }

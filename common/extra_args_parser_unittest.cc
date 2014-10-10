@@ -190,35 +190,6 @@ TEST(ExtraArgsParserTest, ExtraArgumentsAppNameTooLong) {
   EXPECT_FAILED(parser.Parse(extra_args, NULL, &args));
 }
 
-TEST(ExtraArgsParserTest, ExtraArgumentsAppNameUnicode) {
-  // Read the non-ascii string from the resources, and convert
-  // it into a utf8 encoded, url escaped string.
-  CString non_ascii_name;
-  ASSERT_TRUE(non_ascii_name.LoadString(IDS_ESCAPE_TEST));
-
-  CString wide_tag;
-  ASSERT_HRESULT_SUCCEEDED(WideStringToUtf8UrlEncodedString(non_ascii_name,
-                                                            &wide_tag));
-
-  ExtraArgsParser parser;
-  CommandLineExtraArgs args;
-  CString extra_args;
-  extra_args.Format(_T("appguid={D0324988-DA8A-49e5-BCE5-925FCD04EAB7}&")
-                    _T("appname=%s"), wide_tag);
-  EXPECT_SUCCEEDED(parser.Parse(extra_args, NULL, &args));
-
-  CommandLineAppArgs app_args;
-  app_args.app_name = non_ascii_name;
-  app_args.app_guid =
-      StringToGuid(_T("{D0324988-DA8A-49e5-BCE5-925FCD04EAB7}"));
-
-  CommandLineExtraArgs expected;
-  expected.apps.push_back(app_args);
-  expected.bundle_name = non_ascii_name;
-
-  VerifyCommandLineExtraArgs(expected, args);
-}
-
 TEST(ExtraArgsParserTest, ExtraArgumentsAppNameUnicode2) {
   // Read the non-ascii string from the resources, and convert
   // it into a utf8 encoded, url escaped string.
