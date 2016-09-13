@@ -2,7 +2,7 @@
 
 :: Hammer does not need this variable but the unit
 :: tests do.
-set OMAHA_PSEXEC_DIR=%ProgramFiles(x86)%
+set OMAHA_PSEXEC_DIR=C:\PSTool
 
 setlocal
 
@@ -34,10 +34,10 @@ goto set_env_variables
 :: Change these variables to match the local build environment.
 
 :: Directory where the Go programming language toolchain is installed.
-set GOROOT=%ProgramFiles(x86)%\go\files
+set GOROOT=c:\Go
 
 :: Directory where AtlServer files are.
-set OMAHA_ATL_SERVER_DIR=c:\atl_server\files
+set OMAHA_ATL_SERVER_DIR=c:\ATL
 
 :: This will depend on your OS. If this version of the .Net framework came with
 :: the OS, then set it to the framework directory
@@ -51,16 +51,16 @@ set OMAHA_NET_DIR=%WINDIR%\Microsoft.NET\Framework\v2.0.50727
 :: framework. If there is a need for the click-once application to run on older
 :: versions of the .Net framework, then an older version of the Windows SDK
 :: needs to be installed and this environment variable point to that directory.
-set OMAHA_NETFX_TOOLS_DIR=%WindowsSDK_ExecutablePath_x86%
+set OMAHA_NETFX_TOOLS_DIR=C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.6.2 Tools
 
 :: Directory where Python (python.exe) is installed.
 set OMAHA_PYTHON_DIR=C:\Python24
 
 :: Directory in WiX where candle.exe and light.exe are installed.
-set OMAHA_WIX_DIR=%ProgramFiles(x86)%\WiX Toolset v3.8\bin
+set OMAHA_WIX_DIR=%ProgramFiles(x86)%\WiX Toolset v3.10\bin
 
 :: Root directory of the WTL installation.
-set OMAHA_WTL_DIR=C:\wtl\files
+set OMAHA_WTL_DIR=%ProgramFiles(x86)%\WTL
 
 set OMAHA_PLATFORM_SDK_DIR=%WindowsSdkDir%\
 set OMAHA_WINDOWS_SDK_10_0_VERSION=%WindowsSDKVersion:~0,-1%
@@ -70,7 +70,7 @@ set OMAHA_SIGNTOOL_SDK_DIR=%WindowsSdkDir%\bin\x86
 set PYTHONPATH=%OMAHA_PYTHON_DIR%
 
 :: Directory of Scons (http://www.scons.org/).
-set SCONS_DIR=C:\Python24\Lib\site-packages\scons-1.3.1
+set SCONS_DIR=C:\Python24\Lib\site-packages\scons-1.3.1\engine
 
 :: Directory of the Google's Software Construction Toolkit.
 set SCT_DIR=C:\swtoolkit
@@ -99,3 +99,4 @@ echo Visual Studio version %VisualStudioVersion% is not supported.
 goto end
 
 :end
+
